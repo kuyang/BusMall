@@ -7,7 +7,7 @@ let BusMall = function(name, filePath, id){
     this.filePath = filePath;
     this.id = id;
     this.clicked = 0;
-    this.showMe= 0;
+    this.shown= 0;
 };
 
 // BusMall.allProducts = [];
@@ -26,13 +26,13 @@ let BusMall = function(name, filePath, id){
 
 
 //initiate constructor beatsColor
-let backpack = new BusMall('backpack', './Assets/backpack.jpg');
-let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg');
-let messengerBag = new BusMall('messenger bag', './Assets/messenger.jpg');
-let beatsBlue = new BusMall('Beats blue', './Assets/beatsBlue.jpg');
-let beatsPink = new BusMall('Beats pink', './Assets/beatsPink.jpg');
-let beatsPurple = new BusMall('Beats purple', './Assets/beatsPurple.jpg');
-let beatsRed = new BusMall('Beats red', './Assets/beatsRed.jpg');
+let backpack = new BusMall('backpack', './Assets/backpack.jpg', 'Back Pack');
+let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg', 'Side Bag');
+let messengerBag = new BusMall('messenger bag', './Assets/messenger.jpg', 'bag');
+let beatsBlue = new BusMall('Beats blue', './Assets/beatsBlue.jpg', 'blue');
+let beatsPink = new BusMall('Beats pink', './Assets/beatsPink.jpg','pink');
+let beatsPurple = new BusMall('Beats purple', './Assets/beatsPurple.jpg','purple');
+let beatsRed = new BusMall('Beats red', './Assets/beatsRed.jpg','red');
 
 
 //push instances/objects into busMallArray
@@ -46,7 +46,7 @@ function randomImage(){
     let imageIndex = busMallArray[randomNumber];
     // imageIndex.showMe += 1;
     return imageIndex;
-}
+};
 //function to display images
 
 //Declaring 
@@ -76,10 +76,10 @@ function displayImages(){
         let elImage = document.createElement('img');
         let imageObject = randomImage();
         elImageContainer.appendChild(elImage);
-        elImage.setAttribute('id',imageObject.id);
+        elImage.setAttribute('id', imageObject.id);
         elImage.src = imageObject.filePath;
         elImage.addEventListener('click', imageClicked);
-        imageObject.showMe += 1;
+        imageObject.shown += 1;
         if(i === 0){
             firstImage = imageObject;
         }else if(i === 1){
@@ -103,7 +103,7 @@ function imageClicked(){
     displayImages();
 };
 
-
+//console.log(firstImage.clicked, secondImage.clicked, thirdImage.clicked);
 // displayImages();
 // console.log(elImageContainer);
 // console.log('images', firstImage, secondImage, thirdImage);
