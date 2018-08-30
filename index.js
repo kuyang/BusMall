@@ -2,8 +2,10 @@ let busMallArray = [];
 
 let elImageContainer = document.getElementById('imageContainer');
 
+//
 let BusMall = function(name, filePath, id){
     this.name = name;
+    //will stantiate the property
     this.filePath = filePath;
     this.id = id;
     this.clicked = 0;
@@ -25,7 +27,7 @@ let BusMall = function(name, filePath, id){
 
 
 
-//initiate constructor beatsColor
+//initiate constructor beatsColor creating a new instance and asensuating the constuctor and passing arguments to become new proprty
 let backpack = new BusMall('backpack', './Assets/backpack.jpg', 'Back Pack');
 let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg', 'Side Bag');
 let messengerBag = new BusMall('messenger bag', './Assets/messenger.jpg', 'bag');
@@ -44,7 +46,8 @@ busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,
 function randomImage(){
     let randomNumber = Math.floor(Math.random()* busMallArray.length);
     let imageIndex = busMallArray[randomNumber];
-    // imageIndex.showMe += 1;
+    // imageIndex.showMe += 1; imageIndex is an objet
+    //returning the imageIndex object
     return imageIndex;
 };
 //function to display images
@@ -70,25 +73,35 @@ let thirdImage;
 
 // randomImage();
 
+
+
 function displayImages(){
     elImageContainer.innerHTML = '';
     for(let i=0; i<3; i++){
-        let elImage = document.createElement('img');
         let imageObject = randomImage();
+        if(i === 0){
+            firstImage = imageObject;
+        }else if(i === 1){
+            while(imageObject.id === firstImage.id){
+                imageObject = randomImage();
+            }
+            secondImage = imageObject;
+        }else {
+            while(imageObject.id === firstImage.id || imageObject.id === secondImage.id){
+                imageObject = randomImage();
+            }
+            thirdImage = imageObject
+        }
+        let elImage = document.createElement('img');
         elImageContainer.appendChild(elImage);
         elImage.setAttribute('id', imageObject.id);
         elImage.src = imageObject.filePath;
         elImage.addEventListener('click', imageClicked);
         imageObject.shown += 1;
-        if(i === 0){
-            firstImage = imageObject;
-        }else if(i === 1){
-            secondImage = imageObject;
-        }else{
-            thirdImage = imageObject;
-        }
     }
 }
+
+//function expression to run function
 displayImages();
 
 //define event listener that will increment the times clicked. 
