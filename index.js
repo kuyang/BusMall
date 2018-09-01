@@ -28,17 +28,22 @@ let BusMall = function(name, filePath, id){
 
 
 //initiate constructor beatsColor creating a new instance and asensuating the constuctor and passing arguments to become new proprty
-let backpack = new BusMall('backpack', './Assets/backpack.jpg', 'Back Pack');
-let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg', 'Side Bag');
-let messengerBag = new BusMall('messenger bag', './Assets/messenger.jpg', 'bag');
-let beatsBlue = new BusMall('Beats blue', './Assets/beatsBlue.jpg', 'blue');
-let beatsPink = new BusMall('Beats pink', './Assets/beatsPink.jpg','pink');
-let beatsPurple = new BusMall('Beats purple', './Assets/beatsPurple.jpg','purple');
-let beatsRed = new BusMall('Beats red', './Assets/beatsRed.jpg','red');
+if (localStorage.length > 0){
+    let getData = localStorage.getItem('storageBusMallArray');
+    busMallArray = JSON.parse(getData);
+}else {
+    let backpack = new BusMall('backpack', './Assets/backpack.jpg', 'Back Pack');
+    let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg', 'Side Bag');
+    let messengerBag = new BusMall('messenger bag', './Assets/messenger.jpg', 'bag');
+    let beatsBlue = new BusMall('Beats blue', './Assets/beatsBlue.jpg', 'blue');
+    let beatsPink = new BusMall('Beats pink', './Assets/beatsPink.jpg','pink');
+    let beatsPurple = new BusMall('Beats purple', './Assets/beatsPurple.jpg','purple');
+    let beatsRed = new BusMall('Beats red', './Assets/beatsRed.jpg','red');
+    busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed);
+}
 
 
 //push instances/objects into busMallArray
-busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed);
 // console.log(backpack);
 // console.log(BusMall);
 
@@ -105,7 +110,7 @@ function displayImages(){
 displayImages();
 
 //define event listener that will increment the times clicked. 
-function imageClicked(){
+function imageClicked(event){
     if(event.target.id === firstImage.id){
         firstImage.clicked += 1;
     }else if(event.target.id === secondImage.id){
@@ -114,38 +119,12 @@ function imageClicked(){
         thirdImage.clicked += 1;
     }
     displayImages();
+    //save our data to local storage to be called. 
+    localStorage.setItem('storageBusMallArray', JSON.stringify(busMallArray));
+    DisplyChart();
 };
 
-//console.log(firstImage.clicked, secondImage.clicked, thirdImage.clicked);
-// displayImages();
-// console.log(elImageContainer);
-// console.log('images', firstImage, secondImage, thirdImage);
-
-
-// function imageClickedOne(){
-//     firstImage.clicked += 1;
-//     console.log('first image clicked:', firstImage.clicked);
-//     firstImage.showMe += 1;
-//     console.log('first image showMe', firstImage.showMe);
-// }
-
-// function imageClickedTwo(){
-//     secondImage.clicked += 1;
-//     console.log('second image clicked:',secondImage.clicked);
-//     secondImage.showMe += 1;
-//     console.log('second image showMe', secondImage.showMe);
-// }
-
-// function imageClickedThree(){
-//     thirdImage.clicked += 1;
-//     console.log('third image clicked:',thirdImage.clicked);
-//     thirdImage.showMe += 1;
-//     console.log('third image showMe', thirdImage.showMe);
-// }
-
-// imageOne.addEventListener('click',imageClickedOne);
-// imageTwo.addEventListener('click',imageClickedTwo);
-// imageThree.addEventListener('click',imageClickedThree);
-
-// console.log(firstImage.showMe, secondImage.showMe, thirdImage.showMe);
+//saving our object info
+// localStorage.setItem('storageBusMallArray', JSON.stringify(busMallArray));
+// busMallArray = JSON.parse(localStorage.storageBusMallArray);
 
