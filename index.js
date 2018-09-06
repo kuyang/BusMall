@@ -33,7 +33,10 @@ let BusMall = function(name, filePath, id){
 //     busMallArray = JSON.parse(getData);
 // }else {
 
-
+if(localStorage.length > 0){
+    let getData = localStorage.getItem('BusMallStorage');
+    busMallArray = JSON.parse(getData);
+    }else{
 
     let backpack = new BusMall('backpack', './Assets/backpack.jpg', 'Back Pack');
     let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg', 'Side Bag');
@@ -43,7 +46,7 @@ let BusMall = function(name, filePath, id){
     let beatsPurple = new BusMall('Beats purple', './Assets/beatsPurple.jpg','purple');
     let beatsRed = new BusMall('Beats red', './Assets/beatsRed.jpg','red');
     busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed);
-// }
+}
 
 
 
@@ -125,6 +128,7 @@ function imageClicked(event){
     displayImages();
     //save our data to local storage to be called. 
     //localStorage.setItem('storageBusMallArray', JSON.stringify(busMallArray));
+    localStorage.setItem('BusMallStorage', JSON.stringify(busMallArray));
     DisplyChart();
 };
 
