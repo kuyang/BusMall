@@ -28,10 +28,13 @@ let BusMall = function(name, filePath, id){
 
 
 //initiate constructor beatsColor creating a new instance and asensuating the constuctor and passing arguments to become new proprty
-if (localStorage.length > 0){
-    let getData = localStorage.getItem('storageBusMallArray');
-    busMallArray = JSON.parse(getData);
-}else {
+// if (localStorage.length > 0){
+//     let getData = localStorage.getItem('storageBusMallArray');
+//     busMallArray = JSON.parse(getData);
+// }else {
+
+
+
     let backpack = new BusMall('backpack', './Assets/backpack.jpg', 'Back Pack');
     let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg', 'Side Bag');
     let messengerBag = new BusMall('messenger bag', './Assets/messenger.jpg', 'bag');
@@ -40,7 +43,8 @@ if (localStorage.length > 0){
     let beatsPurple = new BusMall('Beats purple', './Assets/beatsPurple.jpg','purple');
     let beatsRed = new BusMall('Beats red', './Assets/beatsRed.jpg','red');
     busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed);
-}
+// }
+
 
 
 //push instances/objects into busMallArray
@@ -120,7 +124,7 @@ function imageClicked(event){
     }
     displayImages();
     //save our data to local storage to be called. 
-    localStorage.setItem('storageBusMallArray', JSON.stringify(busMallArray));
+    //localStorage.setItem('storageBusMallArray', JSON.stringify(busMallArray));
     DisplyChart();
 };
 
