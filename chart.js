@@ -12,7 +12,7 @@ function populateChart(property){
     return propertyArray;
 }
 
-function DisplyChart(){
+function DisplayChart(){
     elChart.innerHTML = '';
     let myChart = new Chart(elChart, {
         type: 'bar',

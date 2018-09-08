@@ -12,32 +12,15 @@ let BusMall = function(name, filePath, id){
     this.shown= 0;
 };
 
-// BusMall.allProducts = [];
-// BusMall.activeSet = [];
-// BusMall.Mall.lastDisplayed = [];
-// BusMall.totalClicked = 30;
+TotalClicked = 0;
 
-//Creating objects that will take in parameters
-// let imageOne = document.getElementById('image1');
-// let imageTwo = document.getElementById('image2');
-// let imageThree = document.getElementById('image3');
-// //defining arrays
-// let votes = [];
-// let names = [];
-
-
-
-//initiate constructor beatsColor creating a new instance and asensuating the constuctor and passing arguments to become new proprty
-// if (localStorage.length > 0){
-//     let getData = localStorage.getItem('storageBusMallArray');
-//     busMallArray = JSON.parse(getData);
-// }else {
 
 if(localStorage.length > 0){
     let getData = localStorage.getItem('BusMallStorage');
     busMallArray = JSON.parse(getData);
+    let TotalClicked = localStorage.getItem('TotalClickedStorage');
     }else{
-
+    let TotalClicked = 25;    
     let backpack = new BusMall('backpack', './Assets/backpack.jpg', 'Back Pack');
     let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg', 'Side Bag');
     let messengerBag = new BusMall('messenger bag', './Assets/messenger.jpg', 'bag');
@@ -45,7 +28,20 @@ if(localStorage.length > 0){
     let beatsPink = new BusMall('Beats pink', './Assets/beatsPink.jpg','pink');
     let beatsPurple = new BusMall('Beats purple', './Assets/beatsPurple.jpg','purple');
     let beatsRed = new BusMall('Beats red', './Assets/beatsRed.jpg','red');
-    busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed);
+    let sleepPillow = new BusMall('Pillow', './Assets/sleepPillow.jpg', 'pillow');
+    let redBackpack = new BusMall('LV Supreme red', './Assets/lvSupremeRedBP.jpg', 'Supreme Red')
+    let brnBackpack = new BusMall('LV brown backpack', './Assets/lvBrnBackpack.jpg', 'LV Brown');
+    let blkBackpack = new BusMall('LV black backpack', './Assets/lvBlkBackpack.jpg','LV Black');
+    let lvTrunk = new BusMall('LV Trunk','./Assets/lvTrunk.jpg','LV Trunk');
+    let lvLuggageSet = new BusMall('LV Luggage set', './Assets/lvLuggageSet.jpg', 'LV LuggageSet');
+    let lvLuggage = new BusMall('LV Luggage', './Assets/lvLuggage.jpg','LV Luggage');
+    let rimGrey = new BusMall('Rimowa Grey', './Assets/rimowaGrey.jpg','Rimowa Grey');
+    let rimSilver = new BusMall('Rimowa Silver', './Assets/rimowaSilverSet.jpg','Rimowa Silver');
+    let goPro6 = new BusMall('GoPro Hero6', './Assets/goPro6.jpg','Hero6');
+    let nikonZ7 = new BusMall('Nikon Z7', './Assets/nikonZ7.jpg','Nikon Z7');
+    let supremeRed = new BusMall('Supreme Red', './Assets/supLugRed.jpg','Supreme LugRed');
+    let supremeBlk = new BusMall('Supreme Black','./Assets/supLugBlk.jpg','Supreme Lugblk')
+    busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed,sleepPillow,redBackpack,brnBackpack,blkBackpack,lvTrunk,lvLuggageSet,lvLuggage,rimGrey,rimSilver,goPro6,nikonZ7,supremeRed,supremeBlk);
 }
 
 
@@ -84,9 +80,6 @@ let thirdImage;
 // }
 
 // randomImage();
-
-
-
 function displayImages(){
     elImageContainer.innerHTML = '';
     for(let i=0; i<3; i++){
@@ -117,6 +110,8 @@ function displayImages(){
 displayImages();
 
 //define event listener that will increment the times clicked. 
+
+
 function imageClicked(event){
     if(event.target.id === firstImage.id){
         firstImage.clicked += 1;
@@ -124,15 +119,29 @@ function imageClicked(event){
         secondImage.clicked += 1;
     }else if(event.target.id === thirdImage.id){
         thirdImage.clicked += 1;
-    }
+    };
     displayImages();
+    TotalClicked += 1;
+    console.log(TotalClicked);
     //save our data to local storage to be called. 
-    //localStorage.setItem('storageBusMallArray', JSON.stringify(busMallArray));
     localStorage.setItem('BusMallStorage', JSON.stringify(busMallArray));
-    DisplyChart();
+    localStorage.setItem('TotalClickedStorage', TotalClicked);
+    DisplayChartNow();
 };
 
 //saving our object info
 // localStorage.setItem('storageBusMallArray', JSON.stringify(busMallArray));
 // busMallArray = JSON.parse(localStorage.storageBusMallArray);
+//let removeButton 
+function DisplayChartNow(){
+    if(TotalClicked > 25){
+        //elImage.removeEventListener('click', imageClicked);
+        elImageContainer.removeEventListener('click', imageClicked);
+        DisplayChart();
+        localStorage.clear();
+    }
+};
 
+
+//function StartOverButton();
+//need to fix line 128
