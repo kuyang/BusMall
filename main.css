@@ -1,7 +1,23 @@
 img{
     width:300px;
+    border-radius: 5%;
+    border: solid 2px rgb(19, 34, 116);
+    margin: 2em;
+}
+img:hover{
+    transform: scale(1.4,1.4);
+    box-shadow: lightgrey;
 }
 
 h1{
     text-align: center;
+}
+
+div{
+    text-align: center;
+}
+
+body{
+    background-color: lightcyan;
+
 }

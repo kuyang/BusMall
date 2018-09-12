@@ -9,9 +9,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
 </head>
 <body>
-    <h1>Choose your favorite item</h1>
+    <h1>BusMall consumer research</h1>
+    <h2>Please select your favorite item out of the 3 that are displayed. The images will refresh after each click.</h2>
     <div id='imageContainer'></div>
     <canvas id='myChart'></canvas>
+    <h5><span id = 'countTrack'></span> out of 25 votes left</h5>
+    <button onclick="startOver()">Start Over</button>
 </body>
 <script src="index.js"></script>
 <script src='chart.js'></script>

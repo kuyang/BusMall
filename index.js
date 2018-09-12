@@ -1,8 +1,8 @@
 let busMallArray = [];
-
+//BusMall.TotalClicked = 0;
 let elImageContainer = document.getElementById('imageContainer');
-
-//
+let elStartOver = document.getElementById('StartOver');
+//BusMall is written with capital B to say that it is an OBJECT.
 let BusMall = function(name, filePath, id){
     this.name = name;
     //will stantiate the property
@@ -10,17 +10,20 @@ let BusMall = function(name, filePath, id){
     this.id = id;
     this.clicked = 0;
     this.shown= 0;
+    
 };
 
-TotalClicked = 0;
+let TotalClicked;
 
 
 if(localStorage.length > 0){
     let getData = localStorage.getItem('BusMallStorage');
     busMallArray = JSON.parse(getData);
-    let TotalClicked = localStorage.getItem('TotalClickedStorage');
-    }else{
-    let TotalClicked = 25;    
+    let getData2 = localStorage.getItem('TotalClickedStorage');
+    TotalClicked = parseInt(getData2);
+    //let TotalClicked = localStorage.getItem('TotalClickedStorage');
+}else{  
+    TotalClicked = 0;
     let backpack = new BusMall('backpack', './Assets/backpack.jpg', 'Back Pack');
     let sideBag = new BusMall('sideBag', './Assets/sideBag.jpg', 'Side Bag');
     let messengerBag = new BusMall('messenger bag', './Assets/messenger.jpg', 'bag');
@@ -42,10 +45,8 @@ if(localStorage.length > 0){
     let supremeRed = new BusMall('Supreme Red', './Assets/supLugRed.jpg','Supreme LugRed');
     let supremeBlk = new BusMall('Supreme Black','./Assets/supLugBlk.jpg','Supreme Lugblk')
     busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed,sleepPillow,redBackpack,brnBackpack,blkBackpack,lvTrunk,lvLuggageSet,lvLuggage,rimGrey,rimSilver,goPro6,nikonZ7,supremeRed,supremeBlk);
+    
 }
-
-
-
 //push instances/objects into busMallArray
 // console.log(backpack);
 // console.log(BusMall);
@@ -65,23 +66,16 @@ let firstImage;
 let secondImage;
 let thirdImage;
 
-//     //update images
-//     imageOne.src = BusMall.allProducts[firstImage].filePath;
-//     imageTwo.src = BusMall.allProducts[secondImage].filePath;
-//     imageThree.src = BusMall.allProducts[thirdImage].filePath;
-//     //increments view for all images
-//     BusMall.allProducts[firstImage].showMe++;
-//     BusMall.allProducts[secondImage].showMe++;
-//     BusMall.allProducts[thirdImage].showMe++;
+// function StartOverButton(){
+//     elButton = document.getElementById('startOver');
+//     elButton.addEventListener('click', startOver);
+// };
 
-//     BusMall.lastDisplayed[0] = firstImage;
-//     BusMall.lastDisplayed[1] = secondImage;
-//     BusMall.lastDisplayed[2] = thirdImage;
-// }
 
-// randomImage();
 function displayImages(){
     elImageContainer.innerHTML = '';
+    // let getData2 = localStorage.getItem('totalClickedStorage');
+    // TotalClicked = getData2;
     for(let i=0; i<3; i++){
         let imageObject = randomImage();
         if(i === 0){
@@ -103,16 +97,29 @@ function displayImages(){
         elImage.src = imageObject.filePath;
         elImage.addEventListener('click', imageClicked);
         imageObject.shown += 1;
+        if(TotalClicked > 24){
+            elImage.removeEventListener('click',imageClicked);
+        }
+        let elCountDown = document.getElementById('countTrack');
+        elCountDown.innerHTML = 25 - TotalClicked;
+
     }
 }
 
 //function expression to run function
 displayImages();
 
+function startOver(){
+    localStorage.clear();
+    location.reload();
+}
 //define event listener that will increment the times clicked. 
 
-
+//event is a parameter for the function imageCLicked
 function imageClicked(event){
+    console.log(localStorage);
+    // let getData2 = localStorage.getItem('totalClickedStorage');
+    // TotalClicked = getData2;
     if(event.target.id === firstImage.id){
         firstImage.clicked += 1;
     }else if(event.target.id === secondImage.id){
@@ -120,25 +127,35 @@ function imageClicked(event){
     }else if(event.target.id === thirdImage.id){
         thirdImage.clicked += 1;
     };
-    displayImages();
     TotalClicked += 1;
     console.log(TotalClicked);
-    //save our data to local storage to be called. 
+    displayImages();
+    //addClicks();
+    //save our data to local storage to be called. Property BusMallStorage
     localStorage.setItem('BusMallStorage', JSON.stringify(busMallArray));
+    // equal to localStorage.BusMallStorage = JSON.Stringify
     localStorage.setItem('TotalClickedStorage', TotalClicked);
     DisplayChartNow();
 };
 
+// function addClicks(){
+//     let TotalClicked = busMallArray[0].clicked;
+//     for(let i=0; i>busMallArray.length; i++){
+//         TotalClicked += busMallArray[i].clicked
+//     }
+//     TotalClicked;
+
+// }
 //saving our object info
 // localStorage.setItem('storageBusMallArray', JSON.stringify(busMallArray));
 // busMallArray = JSON.parse(localStorage.storageBusMallArray);
 //let removeButton 
 function DisplayChartNow(){
-    if(TotalClicked > 25){
+    if(TotalClicked > 24){
         //elImage.removeEventListener('click', imageClicked);
-        elImageContainer.removeEventListener('click', imageClicked);
+        //elImageContainer.removeEventListener('click', imageClicked);
         DisplayChart();
-        localStorage.clear();
+        //localStorage.clear();
     }
 };
 
