@@ -19,7 +19,7 @@ function DisplayChart(){
         data: {
             labels: populateChart('name'),
             datasets: [{
-                label: '# of Clicks',
+                label: '# of votes',
                 data: populateChart('clicked'),
 
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -27,7 +27,7 @@ function DisplayChart(){
                 borderWidth: 1,
             },
             {
-                label: '# of times shown',
+                label: '# of times displayed',
                 data: populateChart('shown'),
                 backgroundColor:  'rgba(255, 159, 64, 0.2)',
                 borderColor: 'rgba(255, 159, 64, 1)',
