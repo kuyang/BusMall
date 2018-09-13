@@ -31,6 +31,7 @@ function DisplayChart(){
                 data: populateChart('shown'),
                 backgroundColor:  'rgba(255, 159, 64, 0.2)',
                 borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1,
 
             }
         ]
