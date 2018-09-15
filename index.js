@@ -43,8 +43,13 @@ if(localStorage.length > 0){
     let goPro6 = new BusMall('GoPro Hero6', './Assets/goPro6.jpg','Hero6');
     let nikonZ7 = new BusMall('Nikon Z7', './Assets/nikonZ7.jpg','Nikon Z7');
     let supremeRed = new BusMall('Supreme Red', './Assets/supLugRed.jpg','Supreme LugRed');
-    let supremeBlk = new BusMall('Supreme Black','./Assets/supLugBlk.jpg','Supreme Lugblk')
-    busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed,sleepPillow,redBackpack,brnBackpack,blkBackpack,lvTrunk,lvLuggageSet,lvLuggage,rimGrey,rimSilver,goPro6,nikonZ7,supremeRed,supremeBlk);
+    let supremeBlk = new BusMall('Supreme Black','./Assets/supLugBlk.jpg','Supreme Lugblk');
+    let hoodPillow = new BusMall('Pillow Hoodie','./Assets/hoodPillow.jpg','Pillow Hoodie');
+    let smLiquor = new BusMall('mini liquor bottles','./Assets/smLiquor.jpg','smLiquor');
+    let smBottleBag = new BusMall('bag of mini liqupor bottles','./Assets/smBottleBag.jpg','smBottleBag');
+    let miniJack = new BusMall('Mini Jack Daniels','./Assets/miniJack.jpg','miniJackl');
+    let miniBottles = new BusMall('lots of mini bottles','./Assets/miniBottles.jpg','miniBottles');
+    busMallArray.push(backpack,sideBag,messengerBag,beatsBlue,beatsPink,beatsPurple,beatsRed,sleepPillow,redBackpack,brnBackpack,blkBackpack,lvTrunk,lvLuggageSet,lvLuggage,rimGrey,rimSilver,goPro6,nikonZ7,supremeRed,supremeBlk,hoodPillow,smLiquor,smBottleBag, miniJack,miniBottles);
     
 }
 //push instances/objects into busMallArray
@@ -152,6 +157,7 @@ function imageClicked(event){
 //let removeButton 
 function DisplayChartNow(){
     if(TotalClicked > 24){
+        elImageContainer.innerHTML = '';
         //elImage.removeEventListener('click', imageClicked);
         //elImageContainer.removeEventListener('click', imageClicked);
         DisplayChart();
