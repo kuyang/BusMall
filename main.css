@@ -62,6 +62,5 @@ button:hover{
 }
 canvas{
     height: auto;
-    
-
+    width:10px;
 }
