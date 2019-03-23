@@ -1,0 +1,66 @@
+img{
+    height: auto;
+    max-width: 20%;
+    border-radius: 5%;
+    border: solid 2px rgb(19, 34, 116);
+    margin: 2em;
+}
+img:hover{
+    transform: scale(1.2,1.2);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3vw;
+    color: antiquewhite;
+    background: black;
+    margin: 25px 50px;
+    border: solid 5px whitesmoke;
+}
+h2{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2vw
+}
+
+div{
+    text-align: center;
+}
+
+body{
+    background-color: lightcyan;
+    text-align: center;
+
+}
+h3{
+    color: white;
+    background: grey;
+    font-size: 2vw;
+    border: 2px solid red;
+    width: 70%;
+    margin: 20px auto 50px;
+    
+    
+    
+}
+h4{
+    font-size: 1.1vw;
+    text-decoration: underline dotted red;
+}
+button{
+    background-color: palevioletred;
+    font-size: 4vw;
+    text-align: center;
+    color: white;
+    border-radius: 100%;
+    padding: 50px;
+    border: 2px solid red;
+}
+button:hover{
+    transform: (1.5,1.5);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+canvas{
+    height: auto;
+    width:10px;
+}
